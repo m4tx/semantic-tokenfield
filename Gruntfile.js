@@ -9,6 +9,10 @@ module.exports = function (grunt) {
 
     banner: [
       '/*!',
+      ' * semantic-tokenfield <%= version %>-sui1',
+      ' * https://github.com/m4tx/semantic-tokenfield',
+      ' * Copyright 2015 m4tx, Licensed MIT',
+      ' *',
       ' * bootstrap-tokenfield <%= version %>',
       ' * https://github.com/sliptree/bootstrap-tokenfield',
       ' * Copyright 2013-2014 Sliptree and other contributors; Licensed MIT',

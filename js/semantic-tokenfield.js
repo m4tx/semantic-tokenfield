@@ -1,4 +1,8 @@
 /*!
+ * semantic-tokenfield
+ * https://github.com/m4tx/semantic-tokenfield
+ * Copyright 2015 m4tx, Licensed MIT
+ *
  * bootstrap-tokenfield
  * https://github.com/sliptree/bootstrap-tokenfield
  * Copyright 2013-2014 Sliptree and other contributors; Licensed MIT
@@ -95,9 +99,7 @@
       .prop('tabindex', -1)
 
     // Create a wrapper
-    this.$wrapper = $('<div class="tokenfield form-control" />')
-    if (this.$element.hasClass('input-lg')) this.$wrapper.addClass('input-lg')
-    if (this.$element.hasClass('input-sm')) this.$wrapper.addClass('input-sm')
+    this.$wrapper = $('<div class="tokenfield ui fluid search dropdown selection multiple" />')
     if (this.textDirection === 'rtl') this.$wrapper.addClass('rtl')
 
     // Create a new input
@@ -192,7 +194,6 @@
       args[0] = $.extend( {}, defaults, args[0] )
 
       this.$input.typeahead.apply( this.$input, args )
-      this.$hint = this.$input.prev('.tt-hint')
       this.typeahead = true
     }
   }
@@ -232,9 +233,9 @@
       // Bail out if there if attributes are empty or event was defaultPrevented
       if (!createEvent.attrs || createEvent.isDefaultPrevented()) return
 
-      var $token = $('<div class="token" />')
+      var $token = $('<div class="token ui label transition visible" />')
             .append('<span class="token-label" />')
-            .append('<a href="#" class="close" tabindex="-1">&times;</a>')
+            .append('<i class="close delete icon"></i>')
             .data('attrs', attrs)
 
       // Insert token into HTML
@@ -269,9 +270,11 @@
           parseInt($tokenLabel.css('margin-right'), 10)
       }
 
-      $tokenLabel
-        .text(attrs.label)
-        .css('max-width', this.maxTokenWidth)
+      $tokenLabel.css('max-width', this.maxTokenWidth)
+      if (this.options.html)
+        $tokenLabel.html(attrs.label)
+      else
+        $tokenLabel.text(attrs.label)
 
       // Listen to events on token
       $token
@@ -311,16 +314,19 @@
       }
 
       // Update tokenfield dimensions
-      this.update()
+      var _self = this
+      setTimeout(function () {
+        _self.update()
+      }, 0)
 
       // Return original element
       return this.$element.get(0)
     }
 
   , setTokens: function (tokens, add, triggerChange) {
-      if (!tokens) return
-
       if (!add) this.$wrapper.find('.token').remove()
+
+      if (!tokens) return
 
       if (typeof triggerChange === 'undefined') {
           triggerChange = true
@@ -378,6 +384,16 @@
 
   , getInput: function() {
     return this.$input.val()
+  }
+      
+  , setInput: function (val) {
+      if (this.$input.hasClass('tt-input')) {
+          // Typeahead acts weird when simply setting input value to empty,
+          // so we set the query to empty instead
+          this.$input.typeahead('val', val)
+      } else {
+          this.$input.val(val)
+      }
   }
 
   , listen: function () {
@@ -644,13 +660,7 @@
       if (tokensBefore == this.getTokensList() && this.$input.val().length)
         return false // No tokens were added, do nothing (prevent form submit)
 
-      if (this.$input.hasClass('tt-input')) {
-        // Typeahead acts weird when simply setting input value to empty,
-        // so we set the query to empty instead
-        this.$input.typeahead('val', '')
-      } else {
-        this.$input.val('')
-      }
+      this.setInput('')
 
       if (this.$input.data( 'edit' )) {
         this.unedit(focus)
@@ -881,12 +891,11 @@
         }
 
         this.$input.width( mirrorWidth )
-
-        if (this.$hint) {
-          this.$hint.width( mirrorWidth )
-        }
       }
       else {
+        //temporary reset width to minimal value to get proper results
+        this.$input.width(this.options.minWidth);
+        
         var w = (this.textDirection === 'rtl')
               ? this.$input.offset().left + this.$input.outerWidth() - this.$wrapper.offset().left - parseInt(this.$wrapper.css('padding-left'), 10) - inputPadding - 1
               : this.$wrapper.offset().left + this.$wrapper.width() + parseInt(this.$wrapper.css('padding-left'), 10) - this.$input.offset().left - inputPadding;
@@ -895,10 +904,6 @@
         // dimensions returned by jquery will be NaN -> we default to 100%
         // so placeholder won't be cut off.
         isNaN(w) ? this.$input.width('100%') : this.$input.width(w);
-
-        if (this.$hint) {
-          isNaN(w) ? this.$hint.width('100%') : this.$hint.width(w);
-        }
       }
     }
 
@@ -1010,6 +1015,7 @@
   $.fn.tokenfield.defaults = {
     minWidth: 60,
     minLength: 0,
+    html: true,
     allowEditing: true,
     allowPasting: true,
     limit: 0,

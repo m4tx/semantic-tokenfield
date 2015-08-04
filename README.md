@@ -1,21 +1,17 @@
-Bootstrap Tokenfield
-====================
-[![NPM version][npm-badge]](http://badge.fury.io/js/bootstrap-tokenfield)
-[![Build status][travis-badge]](https://travis-ci.org/sliptree/bootstrap-tokenfield)
-[npm-badge]: https://badge.fury.io/js/bootstrap-tokenfield.png
-[travis-badge]: https://travis-ci.org/sliptree/bootstrap-tokenfield.png?branch=master
+Semantic Tokenfield
+===================
 
-A jQuery tagging / tokenizer input plugin for Twitter's Bootstrap, by the guys from [Sliptree](https://sliptree.com)
+Port of great [bootstrap-tokenfield](https://github.com/sliptree/bootstrap-tokenfield) by [Sliptree](https://sliptree.com) for Semantic UI.
 
-Check out the [demo and docs](http://sliptree.github.io/bootstrap-tokenfield/)
+Note that current version are made to work only in "standard conditions", i.e. default input size, default theme, etc. Actually, the port is in its very early stage, even the development version still depends on Bootstrap (but dist version does not!).
 
 ### Installation
 
-Requirements: jQuery 1.9+, Bootstrap 3+ (only CSS)
+Requirements: jQuery 1.9+, Semantic UI 2.0+ (only CSS)
 
 1. Install via npm or bower (recommended) or manually download the package
-2. Include `dist/bootstrap-tokenfield.js` or `dist/bootstrap-tokenfield.min.js` in your HTML
-3. Include `dist/css/bootstrap-tokenfield.css` in your HTML
+2. Include `dist/semantic-tokenfield.js` or `dist/semantic-tokenfield.min.js` in your HTML
+3. Include `dist/css/semantic-tokenfield.css` in your HTML
 
 ### Usage
 
@@ -71,7 +67,7 @@ $('#my-tokenfield').on('tokenfield:createtoken', function (event) {
 
 ### Changelog
 
-See [release notes](https://github.com/sliptree/bootstrap-tokenfield/releases)
+See [release notes](https://github.com/m4tx/semantic-tokenfield/releases)
 
 Previous releases:
 

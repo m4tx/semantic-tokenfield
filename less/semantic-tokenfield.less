@@ -1,4 +1,8 @@
 /*!
+ * semantic-tokenfield
+ * https://github.com/m4tx/semantic-tokenfield
+ * Copyright 2015 m4tx, Licensed MIT
+ *
  * bootstrap-tokenfield
  * https://github.com/sliptree/bootstrap-tokenfield
  * Copyright 2013-2014 Sliptree and other contributors; Licensed MIT
@@ -78,13 +82,10 @@
   // Tokens
   .token {
     .box-sizing(border-box);
-    .border-radius(3px);
     display: inline-block;
-    border: 1px solid @token-border;
-    background-color: @token-background;
     white-space: nowrap;
     margin: -1px 5px 5px 0;
-    height: 22px;
+    height: 24px;
     vertical-align: top;
     cursor: default;
     &:hover {
@@ -112,26 +113,7 @@
         border: 1px solid @token-active-invalid-border;
         .border-radius(3px);
       }
-    }   
-    .token-label {
-      display: inline-block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding-left: 4px;
-      vertical-align: top;
     }
-    .close {
-      font-family: Arial;
-      display: inline-block;
-      line-height: 100%;
-      font-size: 1.1em;
-      line-height: 1.49em;
-      margin-left: 5px;
-      float: none;
-      height: 100%;
-      vertical-align: top;
-      padding-right: 4px;
-    }    
   }
 
   // Inputs
@@ -172,58 +154,14 @@
 
 // Validation states
 
-.has-warning .tokenfield.focus {
+.warning .tokenfield.focus {
   .tokenfield-validation(@state-warning-text);
 }
-.has-error .tokenfield.focus {
+.error .tokenfield.focus {
   .tokenfield-validation(@state-danger-text);
 }
-.has-success .tokenfield.focus {
+.success .tokenfield.focus {
   .tokenfield-validation(@state-success-text);
-}
-
-// Various sizes
-
-.tokenfield.input-sm,
-.input-group-sm .tokenfield {
-  min-height: 30px;
-  padding-bottom: 0px;
-}
-.input-group-sm .token,
-.tokenfield.input-sm .token {
-  height: 20px;
-  margin-bottom: 4px;
-}
-.input-group-sm .token-input,
-.tokenfield.input-sm .token-input {
-  height: 18px;
-  margin-bottom: 5px;
-}
-
-.tokenfield.input-lg,
-.input-group-lg .tokenfield {
-  height: auto;
-  min-height: 45px;
-  padding-bottom: 4px;
-}
-.input-group-lg .token,
-.tokenfield.input-lg .token {
-  height: 25px;
-}
-.input-group-lg .token-label,
-.tokenfield.input-lg .token-label {
-  line-height: 23px;
-}
-.input-group-lg .token .close,
-.tokenfield.input-lg .token .close {
-  line-height: 1.3em;
-}
-.input-group-lg .token-input,
-.tokenfield.input-lg .token-input {
-  height: 23px;
-  line-height: 23px;
-  margin-bottom: 6px;
-  vertical-align: top;
 }
 
 // RTL

@@ -1,10 +1,9 @@
 {
-  "name": "bootstrap-tokenfield",
-  "version": "0.12.1",
-  "title": "bootstrap-tokenfield",
+  "name": "semantic-tokenfield",
+  "title": "semantic-tokenfield",
   "author": {
-    "name": "ragulka",
-    "url": "https://github.com/ragulka"
+    "name": "m4tx",
+    "url": "https://github.com/m4tx"
   },
   "licenses": [
     {
@@ -19,17 +18,17 @@
   "keywords": [
     "jquery",
     "javascript",
-    "bootstrap",
     "tokenfield",
     "tags",
     "token",
     "input",
+    "semantic-ui",
     "select",
     "form"
   ],
-  "homepage": "http://sliptree.github.io/bootstrap-tokenfield/",
-  "docs": "http://sliptree.github.io/bootstrap-tokenfield/",
+  "homepage": "https://github.com/m4tx/semantic-tokenfield/issues",
+  "docs": "https://github.com/m4tx/semantic-tokenfield/issues",
   "bugs": {
-    "url": "https://github.com/sliptree/bootstrap-tokenfield/issues"
+    "url": "https://github.com/m4tx/semantic-tokenfield/issues"
   }
 }

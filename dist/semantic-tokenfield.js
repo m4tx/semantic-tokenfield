@@ -1,4 +1,8 @@
 /*!
+ * semantic-tokenfield
+ * https://github.com/m4tx/semantic-tokenfield
+ * Copyright 2015 m4tx, Licensed MIT
+ *
  * bootstrap-tokenfield
  * https://github.com/sliptree/bootstrap-tokenfield
  * Copyright 2013-2014 Sliptree and other contributors; Licensed MIT
@@ -95,9 +99,7 @@
       .prop('tabindex', -1)
 
     // Create a wrapper
-    this.$wrapper = $('<div class="tokenfield form-control" />')
-    if (this.$element.hasClass('input-lg')) this.$wrapper.addClass('input-lg')
-    if (this.$element.hasClass('input-sm')) this.$wrapper.addClass('input-sm')
+    this.$wrapper = $('<div class="tokenfield ui fluid search dropdown selection multiple" />')
     if (this.textDirection === 'rtl') this.$wrapper.addClass('rtl')
 
     // Create a new input
@@ -231,9 +233,9 @@
       // Bail out if there if attributes are empty or event was defaultPrevented
       if (!createEvent.attrs || createEvent.isDefaultPrevented()) return
 
-      var $token = $('<div class="token" />')
+      var $token = $('<div class="token ui label transition visible" />')
             .append('<span class="token-label" />')
-            .append('<a href="#" class="close" tabindex="-1">&times;</a>')
+            .append('<i class="close delete icon"></i>')
             .data('attrs', attrs)
 
       // Insert token into HTML
